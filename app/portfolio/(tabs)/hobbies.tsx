@@ -8,7 +8,7 @@ const hobbies = () => {
   const { isDark } = useContext(ThemeContext);
   return (
     <View style={isDark ? styles.container_dark : styles.container}>
-      <View style={isDark ? styles.likecontainer_dark : styles.likecontainer}>
+      <View style={isDark ? styles.like_container_dark : styles.like_container}>
         <ScrollView>
           {likes.map((like) => (
             <Text style={isDark ? styles.like_dark : styles.like}>{like}</Text>
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     height: "100%",
     alignItems: "center",
   },
-  likecontainer: {
+  like_container: {
     height: "80%",
     marginTop: 20,
     borderWidth: 2,
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     elevation: 10,
   },
-  likecontainer_dark: {
+  like_container_dark: {
     height: "80%",
     marginTop: 20,
     borderWidth: 2,

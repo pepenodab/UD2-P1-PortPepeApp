@@ -12,17 +12,19 @@ const Card = () => {
         style={isDark ? styles.avatar_dark : styles.avatar}
       />
       <View
-        style={isDark ? styles.descriptionCard_dark : styles.descriptionCard}
+        style={isDark ? styles.description_card_dark : styles.description_card}
       >
         <Text
           style={
-            isDark ? styles.descriptionTitle_DARK : styles.descriptionTitle
+            isDark ? styles.description_title_DARK : styles.description_title
           }
         >
           Descripción sobre mí!
         </Text>
         <Text
-          style={isDark ? styles.descriptionText_DARK : styles.descriptionText}
+          style={
+            isDark ? styles.description_text_DARK : styles.description_text
+          }
         >
           Soy un alumno de dam y me gusta mucho la programación, aunque mi
           ex-tutor no
@@ -77,7 +79,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: COLOR.secondary_DARK,
   },
-  descriptionCard: {
+  description_card: {
     margin: 10,
     backgroundColor: COLOR.primary_LIGHT,
     padding: 10,
@@ -86,7 +88,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: COLOR.secondary_LIGHT,
   },
-  descriptionCard_dark: {
+  description_card_dark: {
     margin: 10,
     backgroundColor: COLOR.primary_DARK,
     padding: 10,
@@ -95,27 +97,27 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: COLOR.secondary_DARK,
   },
-  descriptionTitle: {
+  description_title: {
     color: "black",
     fontSize: 20,
     fontWeight: "bold",
     marginBottom: 10,
     textAlign: "center",
   },
-  descriptionTitle_DARK: {
+  description_title_DARK: {
     color: "#FFF",
     fontSize: 20,
     fontWeight: "bold",
     marginBottom: 10,
     textAlign: "center",
   },
-  descriptionText: {
+  description_text: {
     color: "black",
     fontSize: 16,
     lineHeight: 22,
     textAlign: "center",
   },
-  descriptionText_DARK: {
+  description_text_DARK: {
     color: "#DDD",
     fontSize: 16,
     lineHeight: 22,
