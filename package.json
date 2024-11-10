@@ -9,6 +9,7 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@react-native-vector-icons/entypo": "^1.0.1-alpha.35",
     "expo": "~51.0.37",
     "expo-av": "~14.0.7",
     "expo-constants": "~16.0.2",
