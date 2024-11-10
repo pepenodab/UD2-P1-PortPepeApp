@@ -1,14 +1,16 @@
 import { Tabs } from "expo-router";
 import { View, StyleSheet } from "react-native";
-import React from "react";
+import React, { useContext } from "react";
 import Card from "../../../components/Card";
 import { COLOR } from "../../../styles/colors";
 import Entypo from "@expo/vector-icons/Entypo";
+import { ThemeContext } from "../../../context/ThemeContext";
 
 export default () => {
+  const { isDark } = useContext(ThemeContext);
   return (
     <>
-      <View style={styles.container}>
+      <View style={isDark ? styles.container_dark : styles.container}>
         <Card />
       </View>
       <Tabs
@@ -41,6 +43,9 @@ export default () => {
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: COLOR.primary_LIGHT,
+  },
+  container_dark: {
     backgroundColor: COLOR.primary_DARK,
   },
 });
