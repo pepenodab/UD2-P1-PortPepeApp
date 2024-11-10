@@ -19,7 +19,9 @@ const Welcome = () => {
             my repository.
           </Text>
           <View style={styles.button}>
-            <Link href="./portfolio">GO!</Link>
+            <Link href="./portfolio" style={styles.text_description}>
+              GO!
+            </Link>
           </View>
         </View>
       </View>
@@ -50,7 +52,11 @@ const styles = StyleSheet.create({
     marginTop: 100,
     height: 450,
     width: 300,
+    backgroundColor: COLOR.primary_DARK,
     borderColor: COLOR.secondary_DARK,
+    shadowColor: "#000",
+    shadowOpacity: 0.1,
+    elevation: 10,
   },
   button: {
     backgroundColor: COLOR.secondary_DARK,
@@ -75,7 +81,7 @@ const styles = StyleSheet.create({
     borderWidth: 5,
   },
   text_title: {
-    color: COLOR.secondarytitle_DARK,
+    color: COLOR.title_DARK,
     fontSize: 30,
     fontWeight: "bold",
   },
