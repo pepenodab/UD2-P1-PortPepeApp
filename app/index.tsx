@@ -1,9 +1,9 @@
 import { StyleSheet } from "react-native";
 import React from "react";
-import Welcome from "../components/Welcome";
+import { Redirect } from "expo-router";
 
 const StartPage = () => {
-  return <Welcome />;
+  return <Redirect href={"/welcome"} />;
 };
 
 export default StartPage;
