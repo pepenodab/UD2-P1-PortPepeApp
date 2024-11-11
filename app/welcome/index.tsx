@@ -1,10 +1,10 @@
-import { StyleSheet, Text, View, Image } from "react-native";
+import { Pressable, StyleSheet, Text, View, Image } from "react-native";
 import React, { useContext } from "react";
-import { COLOR } from "../styles/colors";
+import { ThemeContext } from "../../context/ThemeContext";
 import { Link } from "expo-router";
-import { ThemeContext } from "../context/ThemeContext";
+import { COLOR } from "../../styles/colors";
 
-const Welcome = () => {
+const index = () => {
   const { isDark } = useContext(ThemeContext);
   return (
     <View style={isDark ? styles.container_dark : styles.container}>
@@ -12,7 +12,7 @@ const Welcome = () => {
         <View>
           <Image
             style={isDark ? styles.image_dark : styles.image}
-            source={require("../assets/logo.jpg")}
+            source={require("../../assets/logo.jpg")}
           />
         </View>
         <View style={isDark ? styles.box_dark : styles.box}>
@@ -27,21 +27,25 @@ const Welcome = () => {
             Hi, you are using my portfolio app. Here you can find my hobbies and
             my repository.
           </Text>
-          <View style={isDark ? styles.button_dark : styles.button}>
-            <Link
-              href="./portfolio"
-              style={isDark ? styles.button_letter_dark : styles.button_letter}
-            >
-              GO!
-            </Link>
-          </View>
+          <Link href="../portfolio" style={{ marginTop: 50 }}>
+            <View style={isDark ? styles.button_dark : styles.button}>
+              <Text
+                style={
+                  isDark ? styles.button_letter_dark : styles.button_letter
+                }
+              >
+                {" "}
+                GO!
+              </Text>
+            </View>
+          </Link>
         </View>
       </View>
     </View>
   );
 };
 
-export default Welcome;
+export default index;
 
 const styles = StyleSheet.create({
   container: {
