@@ -39,6 +39,18 @@ const index = () => {
               </Text>
             </View>
           </Link>
+          <Link href="../todo" style={{ marginTop: 50 }}>
+            <View style={isDark ? styles.button_dark : styles.button}>
+              <Text
+                style={
+                  isDark ? styles.button_letter_dark : styles.button_letter
+                }
+              >
+                {" "}
+                GO!
+              </Text>
+            </View>
+          </Link>
         </View>
       </View>
     </View>
@@ -138,6 +150,7 @@ const styles = StyleSheet.create({
     borderWidth: 5,
   },
   text_title: {
+    marginTop: 30,
     color: COLOR.title_LIGHT,
     fontSize: 30,
     fontWeight: "bold",
@@ -148,6 +161,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   text_title_dark: {
+    marginTop: 30,
     color: COLOR.title_DARK,
     fontSize: 30,
     fontWeight: "bold",
