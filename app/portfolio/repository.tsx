@@ -1,8 +1,8 @@
 import { StyleSheet, Text, View } from "react-native";
 import React, { useContext } from "react";
 import QRCode from "react-native-qrcode-svg";
-import { COLOR } from "../../../styles/colors";
-import { ThemeContext } from "../../../context/ThemeContext";
+import { COLOR } from "../../styles/colors";
+import { ThemeContext } from "../../context/ThemeContext";
 
 const repository = () => {
   const { isDark } = useContext(ThemeContext);
