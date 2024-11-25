@@ -1,10 +1,10 @@
 import { Tabs } from "expo-router";
 import { View, StyleSheet } from "react-native";
 import React, { useContext } from "react";
-import Card from "../../../components/Card";
-import { COLOR } from "../../../styles/colors";
+import Card from "../../components/Card";
+import { COLOR } from "../../styles/colors";
 import Entypo from "@expo/vector-icons/Entypo";
-import { ThemeContext } from "../../../context/ThemeContext";
+import { ThemeContext } from "../../context/ThemeContext";
 
 export default () => {
   const { isDark } = useContext(ThemeContext);
@@ -26,6 +26,7 @@ export default () => {
             tabBarIcon: () => (
               <Entypo name="thumbs-up" style={{ fontSize: 20 }} />
             ),
+            href: "/portfolio/hobbies",
           }}
         />
         <Tabs.Screen
@@ -33,6 +34,7 @@ export default () => {
           options={{
             headerShown: false,
             title: "GitHub",
+            href: "/portfolio/repository",
             tabBarIcon: () => <Entypo name="github" style={{ fontSize: 20 }} />,
           }}
         />

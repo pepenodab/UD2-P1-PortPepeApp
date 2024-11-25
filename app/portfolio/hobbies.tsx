@@ -1,8 +1,8 @@
 import { StyleSheet, Text, View, ScrollView } from "react-native";
 import React, { useContext } from "react";
-import { likes } from "../../../data/likes";
-import { COLOR } from "../../../styles/colors";
-import { ThemeContext } from "../../../context/ThemeContext";
+import { likes } from "../../data/likes";
+import { COLOR } from "../../styles/colors";
+import { ThemeContext } from "../../context/ThemeContext";
 
 const hobbies = () => {
   const { isDark } = useContext(ThemeContext);
