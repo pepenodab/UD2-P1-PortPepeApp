@@ -7,7 +7,7 @@ import {
   Modal,
 } from "react-native";
 import React, { useState } from "react";
-import { products } from "../../data/products";
+import { products } from "../../data/productsList";
 import Product from "../../components/Product";
 import { COLOR } from "../../styles/colors";
 import { ProductClass } from "../../model/Product";
