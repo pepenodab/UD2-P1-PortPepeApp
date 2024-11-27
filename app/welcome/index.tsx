@@ -26,7 +26,7 @@ const index = () => {
             Hi, you are using my portfolio app. Here you can find my hobbies and
             my repository.
           </Text>
-          <Link href="../portfolio" style={{ marginTop: 50 }}>
+          <Link href="/portfolio" style={{ marginTop: 50 }}>
             <View style={isDark ? styles.button_dark : styles.button}>
               <Text
                 style={
@@ -38,7 +38,7 @@ const index = () => {
               </Text>
             </View>
           </Link>
-          <Link href="../shop" style={{ marginTop: 20 }}>
+          <Link href="/shop" style={{ marginTop: 20 }}>
             <View style={isDark ? styles.button_dark : styles.button}>
               <Text
                 style={
@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     position: "absolute",
     marginLeft: -90,
-    top: "18%",
+    top: -20,
     zIndex: 1,
     borderColor: COLOR.secondary_LIGHT,
     borderWidth: 5,
