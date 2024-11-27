@@ -18,24 +18,7 @@ const listSHop = () => {
     setShowModal(!showModal);
   };
 
-  const returnProduct = () => {
-    let newlist: ProductClass[] = [];
-    products.forEach((product) => {
-      const newproduct = new ProductClass(
-        product.name,
-        product.category,
-        product.quantity,
-        product.price,
-        product.onCart
-      );
-      newlist.push(newproduct);
-    });
-    return newlist;
-  };
-
-  const [productList, setProductList] = useState<ProductClass[]>(
-    returnProduct()
-  );
+  const [productList, setProductList] = useState<ProductClass[]>(products);
 
   const totalPrice = () => {
     let total = 0;
