@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image } from "react-native";
 import React, { useContext } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
 import { Link } from "expo-router";
@@ -6,15 +6,14 @@ import { COLOR } from "../../styles/colors";
 
 const index = () => {
   const { isDark } = useContext(ThemeContext);
+
   return (
     <View style={isDark ? styles.container_dark : styles.container}>
       <View style={styles.body}>
-        <View>
-          <Image
-            style={isDark ? styles.image_dark : styles.image}
-            source={require("../../assets/logo.jpg")}
-          />
-        </View>
+        <Image
+          style={isDark ? styles.image_dark : styles.image}
+          source={require("../../assets/logo.jpg")}
+        />
         <View style={isDark ? styles.box_dark : styles.box}>
           <Text style={isDark ? styles.text_title_dark : styles.text_title}>
             WELCOME!
@@ -27,7 +26,7 @@ const index = () => {
             Hi, you are using my portfolio app. Here you can find my hobbies and
             my repository.
           </Text>
-          <Link href="../portfolio" style={{ marginTop: 50 }}>
+          <Link href="/portfolio" style={{ marginTop: 50 }}>
             <View style={isDark ? styles.button_dark : styles.button}>
               <Text
                 style={
@@ -36,6 +35,18 @@ const index = () => {
               >
                 {" "}
                 GO!
+              </Text>
+            </View>
+          </Link>
+          <Link href="/shop" style={{ marginTop: 20 }}>
+            <View style={isDark ? styles.button_dark : styles.button}>
+              <Text
+                style={
+                  isDark ? styles.button_letter_dark : styles.button_letter
+                }
+              >
+                {" "}
+                BUY!
               </Text>
             </View>
           </Link>
