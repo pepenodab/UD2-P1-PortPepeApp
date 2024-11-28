@@ -31,6 +31,12 @@ const ProductCard = ({
     );
   };
 
+  const toggleDelete = (id: string) => {
+    setProductList((prevList: any[]) =>
+      prevList.filter((product) => product.id !== id)
+    );
+  };
+
   function getCategorie(product: ProductClass): ImageSourcePropType {
     let src;
     for (let index = 0; index < categories.length; index++) {
@@ -40,11 +46,6 @@ const ProductCard = ({
     }
     return src;
   }
-
-  const handleCheckBox = (product: ProductClass) => {
-    product.onCart = !product.onCart;
-    console.log(product.onCart);
-  };
 
   return (
     <View style={styles.productCard}>
@@ -67,7 +68,12 @@ const ProductCard = ({
               <Entypo name="check" style={{ color: "white" }} size={16} />
             )}
           </Pressable>
-          <Pressable style={styles.delete}>
+          <Pressable
+            style={styles.delete}
+            onPress={() => {
+              toggleDelete(productProp.id);
+            }}
+          >
             <Entypo name="trash" style={styles.logo} size={13} />
           </Pressable>
         </View>
