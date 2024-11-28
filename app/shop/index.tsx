@@ -18,6 +18,7 @@ import "react-native-get-random-values";
 
 const listSHop = () => {
   const [notFull, setNotFull] = useState(true);
+  const [edit, setEdit] = useState(false);
 
   const [newProduct, setNewProduct] = useState<ProductClass>({
     id: uuid.v4(),
@@ -27,6 +28,44 @@ const listSHop = () => {
     price: 0,
     onCart: true,
   });
+
+  const handleUpdate = () => {
+    if (newProduct.name.trim().length == 0) {
+      setNotFull(true);
+      alert("No se puede añadir objetos con campos vacios");
+      return;
+    }
+    if (newProduct.category.trim().length == 0 || newProduct.category == null) {
+      setNotFull(true);
+      alert("No se puede añadir objetos con campos vacios");
+      return;
+    }
+    if (newProduct.quantity == 0) {
+      setNotFull(true);
+      alert("No se puede añadir objetos con campos vacios");
+      return;
+    }
+    if (newProduct.price == 0) {
+      setNotFull(true);
+      alert("No se puede añadir objetos con campos vacios");
+      return;
+    }
+
+    setProductList((prevList) =>
+      prevList.map((product) =>
+        product.id === newProduct.id ? { ...newProduct } : product
+      )
+    );
+
+    setNewProduct({
+      id: uuid.v4(),
+      name: "",
+      category: "",
+      quantity: 0,
+      price: 0,
+      onCart: true,
+    });
+  };
 
   const handleAdd = () => {
     if (newProduct.name.trim().length == 0) {
@@ -67,9 +106,21 @@ const listSHop = () => {
   const [showModal, setShowModal] = useState(false);
   const handleModal = () => {
     setShowModal(!showModal);
+    setEdit(false);
+  };
+
+  const handleModalEdit = () => {
+    setShowModal(false);
+    setEdit(false);
   };
 
   const [productList, setProductList] = useState<ProductClass[]>(products);
+
+  const [clear, setClear] = useState(false);
+
+  const deleteList = () => {
+    setProductList([]);
+  };
 
   const totalPrice = () => {
     let total = 0;
@@ -87,7 +138,47 @@ const listSHop = () => {
     <View style={styles.container_main}>
       <Text style={styles.title}>LISTA DE COMPRA</Text>
 
-      <Modal transparent={true} animationType="slide" visible={showModal}>
+      <Modal transparent={true} animationType="slide" visible={clear}>
+        <View style={styles.modal_container}>
+          <View style={styles.form_container}>
+            <Text style={styles.letter_form2}>
+              {" "}
+              !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            </Text>
+            <Text style={styles.letter_form2}>
+              {" "}
+              Estas seguro de eliminar la lista ?
+            </Text>
+            <Text style={styles.letter_form2}>
+              {" "}
+              !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            </Text>
+            <Pressable
+              style={styles.exit}
+              onPress={() => {
+                handleModalEdit();
+              }}
+            >
+              <Text style={styles.text_add}>Cancelar</Text>
+            </Pressable>
+            <Pressable
+              style={styles.add}
+              onPress={() => {
+                deleteList();
+                handleModalEdit();
+              }}
+            >
+              <Text style={styles.text_add}>Vaciar</Text>
+            </Pressable>
+          </View>
+        </View>
+      </Modal>
+
+      <Modal
+        transparent={true}
+        animationType="slide"
+        visible={showModal || edit}
+      >
         <View style={styles.modal_container}>
           <View style={styles.form_container}>
             <View style={styles.form_row}>
@@ -150,8 +241,13 @@ const listSHop = () => {
             <Pressable
               style={styles.add}
               onPress={() => {
-                handleAdd();
-                handleModal();
+                if (showModal && !edit) {
+                  handleAdd();
+                  setShowModal(false);
+                } else if (!showModal && edit) {
+                  handleUpdate();
+                  setEdit(false);
+                }
               }}
             >
               <Text style={styles.text_add}>Añadir...</Text>
@@ -169,27 +265,40 @@ const listSHop = () => {
       </Modal>
 
       <View style={styles.container}>
-        <FlatList
-          data={productList}
-          renderItem={({ item }) => (
-            <Product
-              productProp={item}
-              productList={productList}
-              setProductList={setProductList}
-            />
-          )}
-          keyExtractor={(item) => item.id}
-        />
+        {productList.length > 0 ? (
+          <FlatList
+            data={productList}
+            renderItem={({ item }) => (
+              <Product
+                productProp={item}
+                productList={productList}
+                setProductList={setProductList}
+                setNewProduct={setNewProduct}
+                setEdit={setEdit}
+              />
+            )}
+            keyExtractor={(item) => item.id}
+          />
+        ) : (
+          <Text style={styles.letter_form2}>
+            La lista se encuentra vacia...
+          </Text>
+        )}
       </View>
       <Text style={styles.price_letter}>Precio total: {totalPrice()}€</Text>
-      <Pressable
-        style={styles.add}
-        onPress={() => {
-          handleModal();
-        }}
-      >
-        <Text style={styles.text_add}>Añadir...</Text>
-      </Pressable>
+      <View style={styles.row}>
+        <Pressable style={styles.exit} onPress={() => setClear(true)}>
+          <Text style={styles.text_add}>Vaciar...</Text>
+        </Pressable>
+        <Pressable
+          style={styles.add}
+          onPress={() => {
+            handleModal();
+          }}
+        >
+          <Text style={styles.text_add}>Añadir...</Text>
+        </Pressable>
+      </View>
     </View>
   );
 };
@@ -284,6 +393,11 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: COLOR.secondarytitle_LIGHT,
   },
+  letter_form2: {
+    fontSize: 16,
+    color: "red",
+    fontWeight: "bold",
+  },
   exit: {
     marginTop: 20,
     borderWidth: 2,
@@ -291,5 +405,10 @@ const styles = StyleSheet.create({
     borderColor: "red",
     width: 130,
     height: 40,
+  },
+  row: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
 });

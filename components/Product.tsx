@@ -16,12 +16,16 @@ type ProductProp = {
   productProp: ProductClass;
   productList: ProductClass[];
   setProductList: Function;
+  setNewProduct: Function;
+  setEdit: Function;
 };
 
 const ProductCard = ({
   productProp,
   productList,
   setProductList,
+  setEdit,
+  setNewProduct,
 }: ProductProp) => {
   const toggleOnCart = (id: string) => {
     setProductList((prevList: any[]) =>
@@ -77,6 +81,15 @@ const ProductCard = ({
             <Entypo name="trash" style={styles.logo} size={13} />
           </Pressable>
         </View>
+        <Pressable
+          style={styles.edit}
+          onPress={() => {
+            setNewProduct(productProp);
+            setEdit(true);
+          }}
+        >
+          <Text>Editar</Text>
+        </Pressable>
       </View>
     </View>
   );
@@ -146,6 +159,14 @@ const styles = StyleSheet.create({
   logo: {
     alignItems: "center",
     marginTop: 2.5,
+    color: "white",
+  },
+  edit: {
+    marginTop: 5,
+    backgroundColor: COLOR.secondary_LIGHT,
+    width: "60%",
+    alignContent: "center",
+    alignItems: "center",
     color: "white",
   },
 });
