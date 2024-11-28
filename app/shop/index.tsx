@@ -156,7 +156,7 @@ const listSHop = () => {
             <Pressable
               style={styles.exit}
               onPress={() => {
-                handleModalEdit();
+                setClear(false);
               }}
             >
               <Text style={styles.text_add}>Cancelar</Text>
@@ -165,7 +165,7 @@ const listSHop = () => {
               style={styles.add}
               onPress={() => {
                 deleteList();
-                handleModalEdit();
+                setClear(false);
               }}
             >
               <Text style={styles.text_add}>Vaciar</Text>
