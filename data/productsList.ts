@@ -5,7 +5,7 @@ import "react-native-get-random-values";
 export const products: ProductClass[] = [
   {
     id: uuid.v4(),
-    name: "Pollon",
+    name: "Dulce de leche",
     category: "bakery",
     quantity: 1,
     price: 2,
