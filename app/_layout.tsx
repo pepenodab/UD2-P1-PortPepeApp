@@ -2,14 +2,17 @@ import { Slot, Stack } from "expo-router";
 import Header from "../components/Header";
 import React from "react";
 import ThemeProvider from "../provider/ThemeProvider";
+import UserTokenProvider from "../provider/UserTokenProvider";
 
 const StackLayout = () => {
   return (
     <>
-      <ThemeProvider>
-        <Header />
-        <Slot />
-      </ThemeProvider>
+      <UserTokenProvider>
+        <ThemeProvider>
+          <Header />
+          <Slot />
+        </ThemeProvider>
+      </UserTokenProvider>
     </>
   );
 };
