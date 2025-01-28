@@ -1,15 +1,29 @@
 import React, { useState, useContext } from "react";
-import { StyleSheet, Text, View, Switch } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Switch,
+  Button,
+  Pressable,
+} from "react-native";
 import { COLOR } from "../styles/colors";
 import { ThemeContext } from "../context/ThemeContext";
+import { asyncStorageService } from "../service/async-store-service";
+import { useRouter } from "expo-router";
 
 const Header = () => {
   const [isEnabled, setIsEnabled] = useState(false);
+  const router = useRouter();
   const toggleSwitch = () => {
     setIsEnabled((previousState) => !previousState);
     theme.handleDark();
   };
   const theme = useContext(ThemeContext);
+  const handleLogout = async () => {
+    await asyncStorageService.remove(asyncStorageService.KEYS.userToken);
+    router.push("login");
+  };
 
   return (
     <View style={theme.isDark ? styles.container_dark : styles.container}>
@@ -23,6 +37,14 @@ const Header = () => {
         onValueChange={toggleSwitch}
         value={theme.isDark}
       />
+      <Pressable
+        style={styles.button}
+        onPress={() => {
+          handleLogout();
+        }}
+      >
+        <Text>LogOut</Text>
+      </Pressable>
     </View>
   );
 };
@@ -63,6 +85,13 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 40,
     fontWeight: "bold",
+  },
+  button: {
+    borderWidth: 2,
+    borderColor: "black",
+    backgroundColor: "red",
+    color: "white",
+    padding: 5,
   },
 });
 
