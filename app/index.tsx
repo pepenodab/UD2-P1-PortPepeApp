@@ -6,19 +6,22 @@ import UserTokenProvider from "../provider/UserTokenProvider";
 import { UserTokenContext } from "../context/UserTokenContext";
 
 const StartPage = () => {
-  const [token, setToken] = useState(false);
+  const [token, setToken] = useState<boolean | null>(null);
 
   useEffect(() => {
     const checkToken = async () => {
-      const token = await asyncStorageService.get<string>(
+      const storedToken = await asyncStorageService.get<string>(
         asyncStorageService.KEYS.userToken
       );
-      if (token != null) {
-        setToken(true);
-      }
+      setToken(!!storedToken);
     };
+
     checkToken();
-  });
+  }, []);
+
+  if (token === null) {
+    return null;
+  }
 
   return token ? (
     <Redirect href="/(drawer)/welcome-page" />
@@ -28,5 +31,4 @@ const StartPage = () => {
 };
 
 export default StartPage;
-
 const styles = StyleSheet.create({});

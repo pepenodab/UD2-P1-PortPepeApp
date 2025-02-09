@@ -13,7 +13,9 @@ const DrawerLayout = () => {
       const token = await asyncStorageService.get<string>(
         asyncStorageService.KEYS.userToken
       );
-      if (token != null) {
+      console.log(token);
+      if (token == null) {
+        console.log("Pa el lobby");
         router.push("login");
       }
     };
@@ -42,6 +44,13 @@ const DrawerLayout = () => {
           options={{
             drawerLabel: "Perfil personal",
             title: "Perfil",
+          }}
+        />
+        <Drawer.Screen
+          name="camera-page"
+          options={{
+            drawerLabel: "Camera",
+            title: "Camera",
           }}
         />
       </Drawer>
