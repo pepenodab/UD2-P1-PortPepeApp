@@ -34,11 +34,11 @@ const DrawerLayout = () => {
           name="shop-page"
           options={{
             drawerLabel: "Shop",
-            title: "Factos sobre perracos",
+            title: "Tiendita",
           }}
         />
         <Drawer.Screen
-          name="profile"
+          name="portfolio"
           options={{
             drawerLabel: "Perfil personal",
             title: "Perfil",
