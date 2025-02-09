@@ -26,12 +26,12 @@ const login = () => {
   const handleLogin = async () => {
     try {
       const response = await loginUser(userInfo.email, userInfo.pswd);
-      console.log("response");
+      console.log("response", response);
       await asyncStorageService.save(
         asyncStorageService.KEYS.userToken,
-        response.token
+        response.object.token
       );
-      console.log("token");
+
       Alert.alert("Inicio de sesion exitoso");
       router.push("(drawer)/welcome-page");
     } catch (error) {

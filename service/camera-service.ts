@@ -1,13 +1,24 @@
 import axios from "axios";
 import { asyncStorageService } from "./async-store-service";
 
-const API_URL = "http://localhost:5000/images";
+const API_URL = "http://192.168.0.23:5000/images";
 
 async function getAuthHeaders() {
-  const token = await asyncStorageService.get<string>(
-    asyncStorageService.KEYS.userToken
-  );
-  return { Authorization: `Bearer ${token}` };
+  try {
+    const token = await asyncStorageService.get(
+      asyncStorageService.KEYS.userToken
+    );
+
+    if (!token) {
+      console.warn("No se encontró un token válido en AsyncStorage.");
+      return {};
+    }
+
+    return { Authorization: `Bearer ${token}` };
+  } catch (error) {
+    console.error("Error obteniendo el token:", error);
+    return {};
+  }
 }
 
 async function getImages() {
