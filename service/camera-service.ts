@@ -16,7 +16,7 @@ async function getAuthHeaders() {
 
     return { Authorization: `Bearer ${token}` };
   } catch (error) {
-    console.error("Error obteniendo el token:", error);
+    console.error("❌ Error obteniendo el token:", error);
     return {};
   }
 }
@@ -46,13 +46,4 @@ async function saveImage(base64: string, width: number, height: number) {
   }
 }
 
-async function deleteImage(id: number) {
-  try {
-    const headers = await getAuthHeaders();
-    await axios.delete(`${API_URL}/${id}`, { headers });
-  } catch (error) {
-    console.error("Error eliminando imagen:", error);
-  }
-}
-
-export const apiService = { getImages, saveImage, deleteImage };
+export const apiService = { getImages, saveImage };
